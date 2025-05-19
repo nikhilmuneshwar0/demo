@@ -1,5 +1,8 @@
+import 'package:demo/providers/auth_provider.dart';
+import 'package:demo/screens/friends_screen.dart';
+import 'package:demo/services/friends_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'services/location.dart';
 import 'services/places.dart';
 import 'widgets/places_view.dart';
@@ -7,8 +10,15 @@ import 'models/place.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const NearbyPlacesApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        Provider(create: (_) => FriendsService()),
+      ],
+      child: const NearbyPlacesApp(),
+    ),
+  );
 }
 
 class NearbyPlacesApp extends StatelessWidget {
@@ -248,8 +258,9 @@ class _PlacesDiscoveryScreenState extends State<PlacesDiscoveryScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  @override
+Widget build(BuildContext context) {
+  return Scaffold(
       appBar: AppBar(
         title: const Text('Discover Nearby'),
         actions: [
@@ -259,6 +270,19 @@ class _PlacesDiscoveryScreenState extends State<PlacesDiscoveryScreen> {
             icon: const Icon(Icons.refresh),
             onPressed: _fetchNearbyPlaces,
             tooltip: 'Refresh',
+          ),
+          // Add this new IconButton for Friends
+          IconButton(
+            icon: const Icon(Icons.people),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FriendsScreen(),
+                ),
+              );
+            },
+            tooltip: 'Friends',
           ),
         ],
       ),

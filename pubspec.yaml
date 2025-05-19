@@ -37,6 +37,10 @@ dependencies:
   google_maps_flutter: ^2.2.3
   share_plus: ^7.2.1
   url_launcher: ^6.1.11  # For opening directions
+  firebase_auth: ^4.11.2
+  google_sign_in: ^6.1.5
+  cloud_firestore: ^4.8.2
+  provider: ^6.1.1
 
 
 

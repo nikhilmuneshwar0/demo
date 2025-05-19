@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unnecessary_to_list_in_spreads, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';

@@ -194,7 +194,7 @@ List<Review> _getTestReviews() {
             ),
           )
         else
-          ...reviews.map((review) => _buildReviewCard(review)).toList(),
+          ...reviews.map((review) => _buildReviewCard(review)),
       ],
     );
   }
@@ -216,8 +216,8 @@ List<Review> _getTestReviews() {
                   )
                 else
                   CircleAvatar(
-                    child: Text(review.authorName[0]),
                     radius: 16,
+                    child: Text(review.authorName[0]),
                   ),
               ],
             ),

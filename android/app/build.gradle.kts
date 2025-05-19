@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.demo"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973" // Using the explicit NDK version
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -40,5 +40,9 @@ android {
 }
 
 flutter {
-    source = "../.."
+    // Add any Flutter-specific configuration here if needed
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.7.0")
 }

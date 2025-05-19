@@ -36,6 +36,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   google_maps_flutter: ^2.2.3
   share_plus: ^7.2.1
+  url_launcher: ^6.1.11  # For opening directions
 
 
 

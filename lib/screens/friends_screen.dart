@@ -1,7 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/friends_service.dart';
@@ -12,6 +13,13 @@ class FriendsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Check if Firebase is initialized
+    final firebaseApp = Firebase.app();
+    if (firebaseApp == null) {
+      return const Center(child: Text('Firebase not initialized'));
+    }
+    
     final friendsService = Provider.of<FriendsService>(context);
     final currentUser = Provider.of<User?>(context);
 

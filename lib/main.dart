@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:demo/providers/auth_provider.dart';
 import 'package:demo/screens/friends_screen.dart';
 import 'package:demo/services/friends_service.dart';
@@ -7,18 +9,31 @@ import 'services/location.dart';
 import 'services/places.dart';
 import 'widgets/places_view.dart';
 import 'models/place.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (_) => AuthProvider()),
+//         Provider(create: (_) => FriendsService()),
+//       ],
+//       child: const NearbyPlacesApp(),
+//     ),
+//   );
+// }
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-        Provider(create: (_) => FriendsService()),
-      ],
-      child: const NearbyPlacesApp(),
-    ),
+  
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+  
+  runApp(const NearbyPlacesApp());
 }
 
 class NearbyPlacesApp extends StatelessWidget {

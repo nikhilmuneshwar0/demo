@@ -1,4 +1,5 @@
 import com.android.build.gradle.BaseExtension
+import java.util.Properties
 
 val localProperties = Properties().apply {
     load(rootProject.file("local.properties").inputStream())
@@ -40,7 +41,9 @@ configure<BaseExtension> {
 
     buildTypes {
         getByName("release") {
-            signingConfig = signingConfigs.getByName("debug")
+            // Configure proper release signing (remove debug signing)
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 }
